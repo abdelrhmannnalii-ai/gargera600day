@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>٦٠٠ يوم مع هاجر</title>
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#160a2a;--bg2:#2a1245;--rose:#ff5c8a;--gold:#ffd27a;--blush:#ffe3ec;--ink:#fff5f8;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:radial-gradient(120% 80% at 50% 0%,var(--bg2),var(--bg) 70%) fixed;color:var(--ink);font-family:'Cairo',Tahoma,sans-serif;overflow-x:hidden;min-height:100vh}
+canvas#fx{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+section{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 22px;text-align:center}
+h1,h2,.script{font-family:'Aref Ruqaa',serif}
+#gate{position:fixed;inset:0;z-index:50;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;transition:opacity 1s,visibility 1s}
+#gate.gone{opacity:0;visibility:hidden}
+.gift{font-size:84px;animation:bob 2s ease-in-out infinite;filter:drop-shadow(0 0 24px var(--rose))}
+@keyframes bob{50%{transform:translateY(-14px) rotate(-5deg)}}
+.btn{font:700 20px 'Cairo',sans-serif;color:#2a0f2e;background:linear-gradient(135deg,var(--gold),var(--rose));border:0;border-radius:40px;padding:14px 34px;cursor:pointer;box-shadow:0 0 30px rgba(255,92,138,.5);animation:pulse 1.8s infinite}
+.btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+@keyframes pulse{50%{transform:scale(1.07)}}
+.hello{font-size:clamp(26px,7vw,40px);color:var(--blush)}
+.big{font-family:'Aref Ruqaa',serif;font-weight:700;font-size:clamp(150px,52vw,380px);line-height:1;background:linear-gradient(180deg,var(--gold),var(--rose) 70%,#b0306a);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 28px rgba(255,92,138,.65));animation:glow 3s ease-in-out infinite}
+@keyframes glow{50%{filter:drop-shadow(0 0 55px rgba(255,210,122,.85))}}
+.sub{font-size:clamp(22px,6vw,34px);font-family:'Aref Ruqaa',serif;color:var(--gold);margin-top:6px}
+.hint{margin-top:30px;opacity:.7;animation:bob 2.4s infinite}
+h2{font-size:clamp(30px,8vw,48px);color:var(--blush);margin-bottom:28px}
+.track{width:min(420px,100%);margin-bottom:34px}
+.bar{position:relative;height:6px;border-radius:6px;background:rgba(255,255,255,.15)}
+.bar i{position:absolute;right:0;top:0;height:100%;width:0;border-radius:6px;background:linear-gradient(270deg,var(--gold),var(--rose));transition:width 3s cubic-bezier(.2,.7,.2,1)}
+.bar em{position:absolute;top:-14px;right:0;font-style:normal;font-size:26px;transition:right 3s cubic-bezier(.2,.7,.2,1)}
+.bar.go i{width:100%}.bar.go em{right:calc(100% - 26px)}
+.dates{display:flex;justify-content:space-between;margin-top:14px;font-size:15px;opacity:.85}
+.stats{display:grid;gap:14px;width:min(420px,100%)}
+.stat{padding:20px;border-radius:22px;background:rgba(255,255,255,.07);border:1px solid rgba(255,210,122,.3);backdrop-filter:blur(6px)}
+.stat b{display:block;font:700 clamp(40px,12vw,58px)/1.1 'Aref Ruqaa',serif;color:var(--gold)}
+.stat span{opacity:.85}
+.gal{padding-inline:0}
+.rail{display:flex;gap:6px;overflow-x:auto;scroll-snap-type:x mandatory;width:100%;padding:30px 14vw 40px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.pol{flex:0 0 auto;width:min(68vw,300px);scroll-snap-align:center;background:#fff8f2;padding:12px 12px 38px;border-radius:6px;box-shadow:0 14px 40px rgba(0,0,0,.55);position:relative;cursor:pointer;transition:transform .35s}
+.pol:nth-child(odd){transform:rotate(-3deg)}.pol:nth-child(even){transform:rotate(2.5deg)}
+.pol:active{transform:scale(1.04) rotate(0)}
+.pol::before{content:'';position:absolute;top:-12px;left:50%;width:70px;height:22px;margin-left:-35px;background:rgba(255,210,122,.75);transform:rotate(-4deg)}
+.pol img,.pol video{display:block;width:100%;aspect-ratio:3/4;object-fit:cover;background:#222;border-radius:2px}
+.pol b{position:absolute;bottom:8px;right:0;left:0;color:#7a3a55;font:700 17px 'Aref Ruqaa',serif}
+#lb{position:fixed;inset:0;z-index:70;background:rgba(10,4,20,.94);display:none;align-items:center;justify-content:center;padding:20px}
+#lb.on{display:flex}#lb img{max-width:100%;max-height:92vh;border-radius:8px;box-shadow:0 0 60px rgba(255,92,138,.4)}
+.letter{max-width:520px;font-size:clamp(19px,5vw,23px);line-height:2.1;min-height:300px;text-align:center}
+.letter::after{content:'|';color:var(--rose);animation:blink 1s infinite}
+.letter.done::after{content:''}
+@keyframes blink{50%{opacity:0}}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;width:min(460px,100%)}
+.card{aspect-ratio:1/1.05;perspective:700px;cursor:pointer;background:none;border:0;color:inherit;font:inherit;position:relative}
+.card i{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:12px;border-radius:20px;backface-visibility:hidden;transition:transform .7s;font-style:normal}
+.card .f{background:linear-gradient(145deg,#ff5c8a,#8b2c8f);font-size:44px}
+.card .b{background:var(--blush);color:#3a1240;font-weight:600;font-size:16px;line-height:1.7;transform:rotateY(180deg)}
+.card.open .f{transform:rotateY(180deg)}.card.open .b{transform:rotateY(360deg)}
+.vbtn{position:relative;width:150px;height:150px;border:0;background:none;cursor:pointer;color:#fff}
+.vbtn svg{position:absolute;inset:0;transform:rotate(90deg) scaleX(-1)}
+.vbtn .c{position:absolute;inset:14px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--rose));display:flex;align-items:center;justify-content:center;font-size:52px;box-shadow:0 0 40px rgba(255,92,138,.6);animation:beat 1.4s infinite}
+.vbtn.on .c{animation:beat .8s infinite}
+.heart{font-size:130px;cursor:pointer;background:none;border:0;animation:beat 1.2s infinite;filter:drop-shadow(0 0 30px var(--rose))}
+@keyframes beat{15%{transform:scale(1.18)}30%{transform:scale(1)}45%{transform:scale(1.12)}}
+.fly{position:fixed;z-index:80;pointer-events:none;font-size:28px;animation:fly 2.2s ease-out forwards}
+@keyframes fly{to{transform:translate(var(--dx),-80vh) rotate(var(--r));opacity:0}}
+#mute{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));left:12px;z-index:60;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(0,0,0,.35);color:#fff;font-size:20px;cursor:pointer;display:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+<canvas id="fx"></canvas>
+<button id="mute" aria-label="الصوت">🔊</button>
+<div id="lb"><img alt=""></div>
+
+<div id="gate">
+  <div class="gift">🎁</div>
+  <div class="hello script">في حاجة مستنياكي يا هاجر…</div>
+  <button class="btn" id="open">افتحي الهدية</button>
+</div>
+
+<section id="s1">
+  <div class="sub" style="margin:0 0 6px">يا هاجر…</div>
+  <div class="big" id="num">0</div>
+  <div class="sub">يوم وإحنا مع بعض 🤍</div>
+  <div class="hint">اسحبي لتحت ↓</div>
+</section>
+
+<section>
+  <h2>من أول يوم لحد النهاردة</h2>
+  <div class="track"><div class="bar" id="bar"><i></i><em>❤️</em></div>
+    <div class="dates"><span>٦ مارس ٢٠٢٥</span><span>٢٦ أكتوبر ٢٠٢٦</span></div></div>
+  <div class="stats">
+    <div class="stat"><b data-to="600">0</b><span>يوم معاكي</span></div>
+    <div class="stat"><b data-to="14400">0</b><span>ساعة بفكر فيكي فيها</span></div>
+    <div class="stat"><b data-to="864000">0</b><span>دقيقة وحشتيني في بعضها</span></div>
+  </div>
+</section>
+
+<section class="gal">
+  <h2>لحظاتنا</h2>
+  <div class="rail" id="rail"><div class="pol"><img alt="" loading="lazy" src="media/p13.jpg"><b>💗</b></div><div class="pol"><video muted loop playsinline preload="metadata" src="media/v0.mp4"></video><b>✨</b></div><div class="pol"><img alt="" loading="lazy" src="media/p07.jpg"><b>🤍</b></div><div class="pol"><img alt="" loading="lazy" src="media/p14.jpg"><b>💞</b></div><div class="pol"><img alt="" loading="lazy" src="media/p02.jpg"><b>🌸</b></div><div class="pol"><video muted loop playsinline preload="metadata" src="media/v1.mp4"></video><b>💗</b></div><div class="pol"><img alt="" loading="lazy" src="media/p08.jpg"><b>✨</b></div><div class="pol"><img alt="" loading="lazy" src="media/p05.jpg"><b>🤍</b></div><div class="pol"><img alt="" loading="lazy" src="media/p06.jpg"><b>💞</b></div><div class="pol"><img alt="" loading="lazy" src="media/p04.jpg"><b>🌸</b></div><div class="pol"><img alt="" loading="lazy" src="media/p12.jpg"><b>💗</b></div><div class="pol"><video muted loop playsinline preload="metadata" src="media/v2.mp4"></video><b>✨</b></div><div class="pol"><img alt="" loading="lazy" src="media/p09.jpg"><b>🤍</b></div><div class="pol"><img alt="" loading="lazy" src="media/p10.jpg"><b>💞</b></div><div class="pol"><img alt="" loading="lazy" src="media/p00.jpg"><b>🌸</b></div><div class="pol"><img alt="" loading="lazy" src="media/p01.jpg"><b>💗</b></div><div class="pol"><img alt="" loading="lazy" src="media/p03.jpg"><b>✨</b></div><div class="pol"><img alt="" loading="lazy" src="media/p11.jpg"><b>🤍</b></div></div>
+  <p style="opacity:.7">اسحبي يمين وشمال، ودوسي على أي صورة 📸</p>
+</section>
+
+<section>
+  <h2>كلمتين من قلبي</h2>
+  <p class="letter" id="letter"></p>
+</section>
+
+<section>
+  <h2>حاجات بحبها فيكي</h2>
+  <div class="cards" id="cards"></div>
+  <p style="margin-top:18px;opacity:.7">دوسي على كل كارت</p>
+</section>
+
+<section>
+  <h2>ليكي أنتي بس 🎙️</h2>
+  <button class="vbtn" id="vbtn" aria-label="شغّلي الرسالة">
+    <svg viewBox="0 0 150 150"><circle cx="75" cy="75" r="68" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="5"/><circle id="ring" cx="75" cy="75" r="68" fill="none" stroke="#ffd27a" stroke-width="5" stroke-linecap="round" stroke-dasharray="427.3" stroke-dashoffset="427.3"/></svg>
+    <span class="c" id="vic">▶</span>
+  </button>
+  <p class="sub" style="margin-top:18px" id="vtxt">اسمعي رسالتي</p>
+</section>
+
+<section>
+  <h2>وبعد ٦٠٠ يوم…</h2>
+  <button class="heart" id="heart" aria-label="قلب">❤️</button>
+  <p class="sub" style="margin-top:20px">دوسي على القلب</p>
+  <p style="margin-top:26px;font-size:20px;line-height:1.9;max-width:420px">أنا لسه بحبك زي أول يوم، وأكتر.<br>كل سنة وإنتي حياتي يا هاجر 💍</p>
+</section>
+
+<audio id="song" loop preload="auto" src="media/song.mp3"></audio>
+<audio id="voice" preload="auto" src="media/voice.mp3"></audio>
+
+<script>
+/* ===== عدّلي الكلام من هنا ===== */
+var LETTER = "يا هاجر، من ٦ مارس ٢٠٢٥ لحد النهاردة ٦٠٠ يوم عدّوا، وأنا في كل يوم فيهم بحمد ربنا إنك في حياتي. إنتي الضحكة اللي بتصلّح يومي، والحضن اللي بنسى فيه تعبي، والصاحبة والحبيبة وكل حاجة حلوة. مش محتاج مناسبة عشان أقولك بحبك، بس الـ٦٠٠ دول حبيت أحتفل بيهم معاكي بطريقتي. وعد مني نكمل الأيام دي ونعد ٦٠٠ تانيين وألف كمان.";
+var REASONS = ["ضحكتك اللي بتنور الدنيا","حنيتك عليّا","عيونك لما بتبصيلي","إنك بتفهميني من غير كلام","جنانك اللي بيفرحني","إنك سندي وأماني"];
+/* ================================ */
+
+var $=function(s){return document.querySelector(s)};
+var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+var song=$('#song'),voice=$('#voice');
+
+/* fireflies: 600 */
+var cv=$('#fx'),cx=cv.getContext('2d'),W,H,P=[];
+function size(){W=cv.width=innerWidth;H=cv.height=innerHeight}
+size();addEventListener('resize',size);
+for(var i=0;i<600;i++)P.push({x:Math.random(),y:Math.random(),r:Math.random()*2.2+.6,s:Math.random()*.00025+.00008,p:Math.random()*6.28,c:Math.random()<.5?'255,210,122':'255,92,138'});
+function draw(t){
+  cx.clearRect(0,0,W,H);
+  for(var i=0;i<P.length;i++){var q=P[i];
+    q.y-=q.s*16;if(q.y<-.02){q.y=1.02;q.x=Math.random()}
+    var a=.25+.55*Math.abs(Math.sin(t/900+q.p)),x=(q.x+Math.sin(t/2500+q.p)*.015)*W,y=q.y*H;
+    cx.fillStyle='rgba('+q.c+','+a+')';cx.shadowColor='rgba('+q.c+',1)';cx.shadowBlur=10;
+    cx.beginPath();cx.arc(x,y,q.r,0,6.28);cx.fill();
+  }
+  if(!reduce)requestAnimationFrame(draw)
+}
+requestAnimationFrame(draw);
+
+function burst(n,x,y){
+  var e=['❤️','💖','💕','✨','🌸','💗'];
+  for(var i=0;i<n;i++){var d=document.createElement('div');d.className='fly';
+    d.textContent=e[i%e.length];
+    d.style.left=(x!=null?x:Math.random()*innerWidth)+'px';d.style.top=(y!=null?y:innerHeight-40)+'px';
+    d.style.setProperty('--dx',(Math.random()*240-120)+'px');d.style.setProperty('--r',(Math.random()*80-40)+'deg');
+    d.style.animationDelay=(Math.random()*.6)+'s';d.style.fontSize=(20+Math.random()*26)+'px';
+    document.body.appendChild(d);setTimeout(function(el){el.remove()},3200,d)}
+}
+function count(el,to,ms){
+  var t0=performance.now();
+  (function f(t){var k=Math.min(1,(t-t0)/ms),v=Math.round(to*(1-Math.pow(1-k,3)));
+    el.textContent=v.toLocaleString('en-US');if(k<1)requestAnimationFrame(f)})(t0)
+}
+
+/* song */
+var fade;
+function volTo(v,done){clearInterval(fade);fade=setInterval(function(){
+  var d=v-song.volume;if(Math.abs(d)<.04){song.volume=v;clearInterval(fade);done&&done()}else song.volume=Math.max(0,Math.min(1,song.volume+Math.sign(d)*.04))},60)}
+$('#mute').onclick=function(){song.muted=!song.muted;this.textContent=song.muted?'🔇':'🔊'};
+
+$('#open').onclick=function(){
+  song.volume=.85;song.play().catch(function(){});$('#mute').style.display='block';
+  $('#gate').classList.add('gone');
+  var r=$('#open').getBoundingClientRect();burst(26,r.left+r.width/2,r.top);
+  setTimeout(function(){count($('#num'),600,3200);setTimeout(function(){burst(30)},3300)},500)
+};
+
+/* voice message */
+var CIRC=427.3,playingV=false;
+function vState(on){playingV=on;$('#vbtn').classList.toggle('on',on);$('#vic').textContent=on?'❚❚':'▶';
+  $('#vtxt').textContent=on?'بسمعك…':'اسمعي رسالتي'}
+$('#vbtn').onclick=function(){
+  if(voice.paused){volTo(.12);voice.play();vState(true)}
+  else{voice.pause();vState(false);volTo(.85)}
+};
+voice.ontimeupdate=function(){if(voice.duration)$('#ring').style.strokeDashoffset=CIRC*(1-voice.currentTime/voice.duration)};
+voice.onended=function(){vState(false);volTo(.85);burst(30);$('#vtxt').textContent='بحبك 💗 دوسي تسمعيها تاني'};
+
+/* gallery */
+var lb=$('#lb');
+document.querySelectorAll('.pol img').forEach(function(im){im.onclick=function(){lb.querySelector('img').src=im.src;lb.classList.add('on')}});
+lb.onclick=function(){lb.classList.remove('on')};
+var vio=new IntersectionObserver(function(es){es.forEach(function(e){
+  e.isIntersecting?e.target.play().catch(function(){}):e.target.pause()})},{threshold:.6});
+document.querySelectorAll('.pol video').forEach(function(v){vio.observe(v)});
+
+/* observers */
+var io=new IntersectionObserver(function(es){es.forEach(function(e){
+  if(!e.isIntersecting)return;var el=e.target;io.unobserve(el);
+  if(el.dataset.to)count(el,+el.dataset.to,2200);
+  if(el.id==='bar')el.classList.add('go');
+  if(el.id==='letter')type(el)
+})},{threshold:.5});
+document.querySelectorAll('[data-to],#letter,#bar').forEach(function(x){io.observe(x)});
+function type(el){var i=0;(function n(){el.textContent=LETTER.slice(0,++i);
+  if(i<LETTER.length)setTimeout(n,reduce?1:55);else el.classList.add('done')})()}
+
+REASONS.forEach(function(r){
+  var b=document.createElement('button');b.className='card';
+  b.innerHTML='<i class="f">💌</i><i class="b">'+r+'</i>';
+  b.onclick=function(){b.classList.toggle('open');if(b.classList.contains('open')){var q=b.getBoundingClientRect();burst(5,q.left+q.width/2,q.top)}};
+  $('#cards').appendChild(b)
+});
+$('#heart').onclick=function(e){burst(40,e.clientX,e.clientY)};
+</script>
+</body>
+</html>
