@@ -9,16 +9,17 @@
 :root{--bg:#160a2a;--bg2:#2a1245;--rose:#ff5c8a;--gold:#ffd27a;--blush:#ffe3ec;--ink:#fff5f8;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth}
-body{background:radial-gradient(120% 80% at 50% 0%,var(--bg2),var(--bg) 70%) fixed;color:var(--ink);font-family:'Cairo',Tahoma,sans-serif;overflow-x:hidden;min-height:100vh}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+button{touch-action:manipulation;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}
+body{background:radial-gradient(120% 80% at 50% 0%,var(--bg2),var(--bg) 70%) fixed;color:var(--ink);font-family:'Cairo',Tahoma,sans-serif;overflow-x:hidden;min-height:100vh;min-height:100svh}
 canvas#fx{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
-section{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 22px;text-align:center}
+section{position:relative;z-index:1;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 22px;text-align:center}
 h1,h2,.script{font-family:'Aref Ruqaa',serif}
 #gate{position:fixed;inset:0;z-index:50;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;transition:opacity 1s,visibility 1s}
 #gate.gone{opacity:0;visibility:hidden}
 .gift{font-size:84px;animation:bob 2s ease-in-out infinite;filter:drop-shadow(0 0 24px var(--rose))}
 @keyframes bob{50%{transform:translateY(-14px) rotate(-5deg)}}
-.btn{font:700 20px 'Cairo',sans-serif;color:#2a0f2e;background:linear-gradient(135deg,var(--gold),var(--rose));border:0;border-radius:40px;padding:14px 34px;cursor:pointer;box-shadow:0 0 30px rgba(255,92,138,.5);animation:pulse 1.8s infinite}
+.btn{min-width:96px;font:700 20px 'Cairo',sans-serif;color:#2a0f2e;background:linear-gradient(135deg,var(--gold),var(--rose));border:0;border-radius:40px;padding:14px 34px;cursor:pointer;box-shadow:0 0 30px rgba(255,92,138,.5);animation:pulse 1.8s infinite}
 .btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
 @keyframes pulse{50%{transform:scale(1.07)}}
 .hello{font-size:clamp(26px,7vw,40px);color:var(--blush)}
@@ -34,7 +35,7 @@ h2{font-size:clamp(30px,8vw,48px);color:var(--blush);margin-bottom:28px}
 .bar.go i{width:100%}.bar.go em{right:calc(100% - 26px)}
 .dates{display:flex;justify-content:space-between;margin-top:14px;font-size:15px;opacity:.85}
 .stats{display:grid;gap:14px;width:min(420px,100%)}
-.stat{padding:20px;border-radius:22px;background:rgba(255,255,255,.07);border:1px solid rgba(255,210,122,.3);backdrop-filter:blur(6px)}
+.stat{padding:20px;border-radius:22px;background:rgba(255,255,255,.07);border:1px solid rgba(255,210,122,.3);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .stat b{display:block;font:700 clamp(40px,12vw,58px)/1.1 'Aref Ruqaa',serif;color:var(--gold)}
 .stat span{opacity:.85}
 .gal{padding-inline:0}
@@ -54,7 +55,7 @@ h2{font-size:clamp(30px,8vw,48px);color:var(--blush);margin-bottom:28px}
 @keyframes blink{50%{opacity:0}}
 .cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;width:min(460px,100%)}
 .card{aspect-ratio:1/1.05;perspective:700px;cursor:pointer;background:none;border:0;color:inherit;font:inherit;position:relative}
-.card i{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:12px;border-radius:20px;backface-visibility:hidden;transition:transform .7s;font-style:normal}
+.card i{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:12px;border-radius:20px;-webkit-backface-visibility:hidden;backface-visibility:hidden;transition:transform .7s;font-style:normal}
 .card .f{background:linear-gradient(145deg,#ff5c8a,#8b2c8f);font-size:44px}
 .card .b{background:var(--blush);color:#3a1240;font-weight:600;font-size:16px;line-height:1.7;transform:rotateY(180deg)}
 .card.open .f{transform:rotateY(180deg)}.card.open .b{transform:rotateY(360deg)}
@@ -67,6 +68,12 @@ h2{font-size:clamp(30px,8vw,48px);color:var(--blush);margin-bottom:28px}
 .fly{position:fixed;z-index:80;pointer-events:none;font-size:28px;animation:fly 2.2s ease-out forwards}
 @keyframes fly{to{transform:translate(var(--dx),-80vh) rotate(var(--r));opacity:0}}
 #mute{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));left:12px;z-index:60;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(0,0,0,.35);color:#fff;font-size:20px;cursor:pointer;display:none}
+/* final question */
+#ask{overflow:hidden}
+.ans{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;min-height:64px}
+.btn.no{background:rgba(255,255,255,.12);color:var(--ink);border:1px solid rgba(255,255,255,.4);box-shadow:none;animation:none}
+#toast{position:fixed;top:0;left:0;right:0;z-index:90;padding:calc(14px + env(safe-area-inset-top,0px)) 16px 14px;background:#168a45;color:#fff;font:700 clamp(17px,4.8vw,22px)/1.6 'Cairo',sans-serif;text-align:center;box-shadow:0 8px 30px rgba(0,0,0,.45);transform:translateY(-120%);transition:transform .5s cubic-bezier(.2,.9,.3,1)}
+#toast.on{transform:none}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}
 </style>
 </head>
@@ -74,15 +81,16 @@ h2{font-size:clamp(30px,8vw,48px);color:var(--blush);margin-bottom:28px}
 <canvas id="fx"></canvas>
 <button id="mute" aria-label="الصوت">🔊</button>
 <div id="lb"><img alt=""></div>
+<div id="toast" role="status" aria-live="polite">الحمدلله، كنت عارف إنها هتعجبك ❤️❤️</div>
 
 <div id="gate">
   <div class="gift">🎁</div>
-  <div class="hello script">في حاجة مستنياكي يا هاجر…</div>
+  <div class="hello script">في حاجة مستنياكي يا مزتي</div>
   <button class="btn" id="open">افتحي الهدية</button>
 </div>
 
 <section id="s1">
-  <div class="sub" style="margin:0 0 6px">يا هاجر…</div>
+  <div class="sub" style="margin:0 0 6px">يا هجورتييي</div>
   <div class="big" id="num">0</div>
   <div class="sub">يوم وإحنا مع بعض 🤍</div>
   <div class="hint">اسحبي لتحت ↓</div>
@@ -132,6 +140,14 @@ h2{font-size:clamp(30px,8vw,48px);color:var(--blush);margin-bottom:28px}
   <p style="margin-top:26px;font-size:20px;line-height:1.9;max-width:420px">أنا لسه بحبك زي أول يوم، وأكتر.<br>كل سنة وإنتي حياتي يا هاجر 💍</p>
 </section>
 
+<section id="ask">
+  <h2>اتبسطتي يجرجيرتي؟</h2>
+  <div class="ans" id="ans">
+    <button class="btn yes" id="yes">اه</button>
+    <button class="btn no" id="no">لا</button>
+  </div>
+</section>
+
 <audio id="song" loop preload="auto" src="media/song.mp3"></audio>
 <audio id="voice" preload="auto" src="media/voice.mp3"></audio>
 
@@ -150,14 +166,17 @@ var cv=$('#fx'),cx=cv.getContext('2d'),W,H,P=[];
 function size(){W=cv.width=innerWidth;H=cv.height=innerHeight}
 size();addEventListener('resize',size);
 for(var i=0;i<600;i++)P.push({x:Math.random(),y:Math.random(),r:Math.random()*2.2+.6,s:Math.random()*.00025+.00008,p:Math.random()*6.28,c:Math.random()<.5?'255,210,122':'255,92,138'});
+function sprite(rgb){var c=document.createElement('canvas');c.width=c.height=32;var g=c.getContext('2d'),gr=g.createRadialGradient(16,16,0,16,16,16);
+  gr.addColorStop(0,'rgba('+rgb+',1)');gr.addColorStop(.35,'rgba('+rgb+',.55)');gr.addColorStop(1,'rgba('+rgb+',0)');g.fillStyle=gr;g.fillRect(0,0,32,32);return c}
+var SP={'255,210,122':sprite('255,210,122'),'255,92,138':sprite('255,92,138')};
 function draw(t){
   cx.clearRect(0,0,W,H);
   for(var i=0;i<P.length;i++){var q=P[i];
     q.y-=q.s*16;if(q.y<-.02){q.y=1.02;q.x=Math.random()}
-    var a=.25+.55*Math.abs(Math.sin(t/900+q.p)),x=(q.x+Math.sin(t/2500+q.p)*.015)*W,y=q.y*H;
-    cx.fillStyle='rgba('+q.c+','+a+')';cx.shadowColor='rgba('+q.c+',1)';cx.shadowBlur=10;
-    cx.beginPath();cx.arc(x,y,q.r,0,6.28);cx.fill();
+    var a=.25+.55*Math.abs(Math.sin(t/900+q.p)),x=(q.x+Math.sin(t/2500+q.p)*.015)*W,y=q.y*H,d=q.r*8;
+    cx.globalAlpha=a;cx.drawImage(SP[q.c],x-d/2,y-d/2,d,d);
   }
+  cx.globalAlpha=1;
   if(!reduce)requestAnimationFrame(draw)
 }
 requestAnimationFrame(draw);
@@ -178,8 +197,10 @@ function count(el,to,ms){
 }
 
 /* song */
-var fade;
-function volTo(v,done){clearInterval(fade);fade=setInterval(function(){
+var fade,volOK=(function(){var o=song.volume;song.volume=.5;var ok=song.volume===.5;song.volume=o;return ok})();
+function volTo(v,done){clearInterval(fade);
+  if(!volOK){if(v<.5)song.pause();else song.play().catch(function(){});done&&done();return}
+  fade=setInterval(function(){
   var d=v-song.volume;if(Math.abs(d)<.04){song.volume=v;clearInterval(fade);done&&done()}else song.volume=Math.max(0,Math.min(1,song.volume+Math.sign(d)*.04))},60)}
 $('#mute').onclick=function(){song.muted=!song.muted;this.textContent=song.muted?'🔇':'🔊'};
 
@@ -227,6 +248,58 @@ REASONS.forEach(function(r){
   $('#cards').appendChild(b)
 });
 $('#heart').onclick=function(e){burst(40,e.clientX,e.clientY)};
+
+/* final question */
+var yes=$('#yes'),no=$('#no'),ans=$('#ans'),ask=$('#ask'),toast=$('#toast'),tt,ran=false,last=0;
+yes.onclick=function(){
+  toast.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('on')},7000);
+  var r=yes.getBoundingClientRect();burst(30,r.left+r.width/2,r.top)
+};
+function hit(a,b,pad){return a.left<b.right+pad&&a.right>b.left-pad&&a.top<b.bottom+pad&&a.bottom>b.top-pad}
+function place(px,py){
+  var s=ask.getBoundingClientRect(),w=no.offsetWidth,h=no.offsetHeight,m=10,
+      ar=ans.getBoundingClientRect(),padX=90,padY=110,
+      minX=Math.max(m,ar.left-s.left-padX),maxX=Math.min(s.width-w-m,ar.right-s.left+padX-w),
+      minY=Math.max(m,ar.top-s.top-padY),maxY=Math.min(s.height-h-m,ar.bottom-s.top+padY-h),
+      yr=yes.getBoundingClientRect(),hr=ask.querySelector('h2').getBoundingClientRect(),best=null,bd=-1;
+  for(var i=0;i<60;i++){
+    var x=minX+Math.random()*Math.max(0,maxX-minX),y=minY+Math.random()*Math.max(0,maxY-minY),
+        c={left:s.left+x,top:s.top+y,right:s.left+x+w,bottom:s.top+y+h};
+    if(hit(c,yr,14)||hit(c,hr,6))continue;
+    var d=px==null?1:Math.hypot(c.left+w/2-px,c.top+h/2-py);
+    if(d>bd){bd=d;best={x:x,y:y}}
+  }
+  return best||{x:Math.max(m,yr.left-s.left+(yr.width-w)/2),y:yr.bottom-s.top+16}
+}
+function run(px,py){
+  var now=Date.now();if(ran&&now-last<180)return;last=now;
+  if(!ran){ran=true;
+    var s=ask.getBoundingClientRect(),b=no.getBoundingClientRect(),ph=document.createElement('span');
+    ph.style.cssText='display:inline-block;width:'+b.width+'px;height:'+b.height+'px';
+    ans.insertBefore(ph,no);
+    no.style.position='absolute';no.style.margin='0';
+    no.style.left=(b.left-s.left)+'px';no.style.top=(b.top-s.top)+'px';
+    void no.offsetWidth;
+    no.style.transition='left .28s cubic-bezier(.2,.9,.3,1),top .28s cubic-bezier(.2,.9,.3,1)'
+  }
+  var p=place(px,py);no.style.left=p.x+'px';no.style.top=p.y+'px'
+}
+function dodge(e){e.preventDefault();var t=e.touches&&e.touches[0]?e.touches[0]:e;run(t.clientX,t.clientY)}
+no.addEventListener('touchstart',dodge,{passive:false});
+no.addEventListener('mousedown',dodge);
+no.addEventListener('click',dodge);
+no.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse')dodge(e)});
+function near(e){
+  var t=e.touches&&e.touches[0]?e.touches[0]:e,r=no.getBoundingClientRect();
+  if(Math.hypot(t.clientX-(r.left+r.width/2),t.clientY-(r.top+r.height/2))<Math.max(r.width,r.height)*.9)run(t.clientX,t.clientY)
+}
+document.addEventListener('mousemove',near);
+document.addEventListener('touchstart',near,{passive:true});
+addEventListener('resize',function(){
+  if(!ran)return;var s=ask.getBoundingClientRect(),w=no.offsetWidth,h=no.offsetHeight;
+  no.style.left=Math.max(10,Math.min(parseFloat(no.style.left)||0,s.width-w-10))+'px';
+  no.style.top=Math.max(10,Math.min(parseFloat(no.style.top)||0,s.height-h-10))+'px'
+});
 </script>
 </body>
 </html>
